@@ -1,3 +1,4 @@
-book_to_deleted = Book.objects.get(title='Nineteen Eighty-Four')
-book_to_deleted.delete()
+from bookshelf.models import Book
+book = Book.objects.all()
+book.delete
 # (1, {'bookshelf.Book': 1})
