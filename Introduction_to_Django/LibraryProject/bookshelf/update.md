@@ -1,3 +1,4 @@
-specific_book = Book.objects.filter(title='1984')
-specific_book.update(title='Nineteen Eighty-Four')
+book = Book.objects.all()
+book.title = 'Nineteen Eighty-Four'
+book.save()
 # 1
