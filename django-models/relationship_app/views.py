@@ -21,6 +21,6 @@ class LibraryDetailView(Library):
   self.library_books = Book.objects.filter(id = self.library.books)
   template = loader.get_template('relationship_app/library_detail.html')
   context = {
-    'books': self.library_books,
+    'library.books.all': self.library_books,
   }
   return HttpResponse(template.render(context, request))
