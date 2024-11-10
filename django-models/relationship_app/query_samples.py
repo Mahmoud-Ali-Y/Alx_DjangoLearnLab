@@ -1,7 +1,8 @@
 from .models import *
 # Query all books by a specific author.
 author_name = pass
-author_books = Book.objects.filter(author = author_name)
+author = Author.objects.get(name=author_name)
+author_books = Book.objects.filter(author = author)
 
 # List all books in a library.
 # library_books = Library.objects.filter(name = '')
@@ -10,4 +11,5 @@ library_name = pass
 books = Library.objects.get(name=library_name)
 books.all()
 # Retrieve the librarian for a library.
-library_librarian = Librarian.objects.filter(Library = '')
+library = Library.objects.get(name=library_name)
+library_librarian = Librarian.objects.filter(library = library)
