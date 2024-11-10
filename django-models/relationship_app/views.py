@@ -59,8 +59,8 @@ def has_perm(self, perm, obj=None):
       book.delete
     @permission_required('Userprofile.Admin', login_url="/Admin/")
     def admin_view(request, id):
-     user = UserProfile.objects.get(id=id)
-     if user.role == 'Admin':
+    # user = UserProfile.objects.get(id=id)
+    # if user.role == 'Admin':
       template = loader.get_template('relationship_app/Admin.html')
       return HttpResponse(template.render())
     def librarian_view(request):
