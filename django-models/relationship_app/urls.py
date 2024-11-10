@@ -15,4 +15,7 @@ urlpatterns = [
     path('add_book/')
     path('edit_book/')
     path('delete_book/')
+    path('Admin/')
+    path('Librarian/')
+    path('‘Member/')
 ]
