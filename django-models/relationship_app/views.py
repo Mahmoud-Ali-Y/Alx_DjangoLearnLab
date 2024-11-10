@@ -3,6 +3,7 @@ from django.template import loader
 from django.http import HttpResponse
 from .models import *
 from .models import Library
+from django.views.generic.detail import DetailView
 # Create your views here.
 def books(request):
   books = Book.objects.all().values()
