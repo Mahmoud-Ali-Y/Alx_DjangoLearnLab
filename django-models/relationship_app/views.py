@@ -58,7 +58,7 @@ def has_perm(self, perm, obj=None):
     def delete_book():
       book = Book.objects.get(id=1)
       book.delete
-    @UserProfile.role('Admin')
+    @User.UserProfile.role('Admin')
     def admin_view(request, id):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Admin':
