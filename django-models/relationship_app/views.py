@@ -5,7 +5,7 @@ from .models import *
 from .models import Library
 from django.views.generic.detail import DetailView
 # Create your views here.
-def books(request):
+def list_books(request):
   books = Book.objects.all().values()
   template = loader.get_template('relationship_app/list_books.html')
   context = {
@@ -14,7 +14,7 @@ def books(request):
   return HttpResponse(template.render(context, request))
  # return HttpResponse(context, request)
 
-class Library_books(Library):
+class LibraryDetailView(Library):
  def get(self, request):
   self.library_name = pass
   self.library = Library.objects.get(name=self.library_name)
