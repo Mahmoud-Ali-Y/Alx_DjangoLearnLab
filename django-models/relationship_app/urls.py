@@ -17,5 +17,5 @@ urlpatterns = [
     path('delete_book/')
     path('Admin/', Views.admin_view)
     path('Librarian/', Views.librarian_view)
-    path('‘Member/', Views.member_view)
+    path('Member/', Views.member_view)
 ]
