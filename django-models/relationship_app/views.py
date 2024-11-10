@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
@@ -45,3 +46,14 @@ def has_perm(self, perm, obj=None):
         return True
     else:
         return False
+    @permission_required('relationship_app.can_add_book', login_url="/login/")
+    def add_book():
+      newbook = Book.objects.create()
+    @permission_required('relationship_app.can_change_book', login_url="/login/")
+    def change_book():
+      book = Book.objects.get(id=1)
+      book.name = ''
+    @permission_required('relationship_app.can_delete_book', login_url="/login/")
+    def delete_book():
+      book = Book.objects.get(id=1)
+      book.delete
