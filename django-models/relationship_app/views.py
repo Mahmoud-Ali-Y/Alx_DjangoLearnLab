@@ -17,7 +17,7 @@ class Library_books(Library):
   self.library_name = pass
   self.library = Library.objects.get(name=self.library_name)
   self.library_books = Book.objects.filter(id = self.library.books)
-  template = loader.get_template('library_detail.html')
+  template = loader.get_template('relationship_app/library_detail.html')
   context = {
     'books': self.library_books,
   }
