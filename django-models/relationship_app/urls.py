@@ -15,7 +15,7 @@ urlpatterns = [
     path('add_book/')
     path('edit_book/')
     path('delete_book/')
-    path('Admin/')
-    path('Librarian/')
-    path('‘Member/')
+    path('Admin/', Views.admin_view)
+    path('Librarian/', Views.librarian_view)
+    path('‘Member/', Views.member_view)
 ]

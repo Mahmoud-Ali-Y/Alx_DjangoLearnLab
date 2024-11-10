@@ -57,12 +57,18 @@ def has_perm(self, perm, obj=None):
     def delete_book():
       book = Book.objects.get(id=1)
       book.delete
-    def admin_view(request):
-     template = loader.get_template('Admin.html')
-     return HttpResponse(template.render())
+    def admin_view(request, id):
+     user = User.objects.get(id=id)
+     if user.role == Admin:
+      template = loader.get_template('Admin.html')
+      return HttpResponse(template.render())
     def librarian_view(request):
-     template = loader.get_template('Librarian.html')
-     return HttpResponse(template.render())
+     user = User.objects.get(id=id)
+     if user.role == Librarian:
+      template = loader.get_template('Librarian.html')
+      return HttpResponse(template.render())
     def member_view(request):
-     template = loader.get_template('Member.html')
-     return HttpResponse(template.render())
+     user = User.objects.get(id=id)
+     if user.role == Member:
+      template = loader.get_template('Member.html')
+      return HttpResponse(template.render())
