@@ -16,9 +16,9 @@ def list_books(request):
 
 class LibraryDetailView(DetailView):
  model = Library
- def get(self, request):
-  self.library_id = request.Library.pk
-  self.library = Library.objects.get(pk=self.library_id)
+ def get(self, request, id):
+ # self.library_id = request.Library.pk
+  self.library = Library.objects.get(pk=id)
  # self.library_books = Book.objects.filter(pk=self.library.books)
   template = loader.get_template('relationship_app/library_detail.html')
   context = {
