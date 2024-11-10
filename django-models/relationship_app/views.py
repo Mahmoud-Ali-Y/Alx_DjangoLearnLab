@@ -61,15 +61,15 @@ def has_perm(self, perm, obj=None):
     def admin_view(request, id):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Admin':
-      template = loader.get_template('Admin.html')
+      template = loader.get_template('relationship_app/Admin.html')
       return HttpResponse(template.render())
     def librarian_view(request):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Librarian':
-      template = loader.get_template('Librarian.html')
+      template = loader.get_template('relationship_app/Librarian.html')
       return HttpResponse(template.render())
     def member_view(request):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Member':
-      template = loader.get_template('Member.html')
+      template = loader.get_template('relationship_app/Member.html')
       return HttpResponse(template.render())
