@@ -10,6 +10,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth import login
+from rolepermissions.decorators import has_role_decorator
 # Create your views here.
 def list_books(request):
   books = Book.objects.all().values()
@@ -57,7 +58,7 @@ def has_perm(self, perm, obj=None):
     def delete_book():
       book = Book.objects.get(id=1)
       book.delete
-    @permission_required('polls.admin_view', login_url="/Admin/")
+    @has_role_decorator('Admin')
     def admin_view(request, id):
     # user = UserProfile.objects.get(id=id)
     # if user.role == 'Admin':
