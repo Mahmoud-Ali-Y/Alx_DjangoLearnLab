@@ -6,5 +6,5 @@ from .views import LibraryDetailView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Book/', Views.list_books, name = 'books')
-    path('pk', Views.LibraryDetailView.as_view(), name = 'Library')
+    path('Library', Views.LibraryDetailView.as_Library(), name = 'Library')
 ]

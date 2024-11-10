@@ -19,9 +19,9 @@ class LibraryDetailView(DetailView):
  def get(self, request):
   self.library_id = request.Library.pk
   self.library = Library.objects.get(pk=self.library_id)
-  self.library_books = Book.objects.filter(pk=self.library.books)
+ # self.library_books = Book.objects.filter(pk=self.library.books)
   template = loader.get_template('relationship_app/library_detail.html')
   context = {
-    'library.books.all': self.library_books,
+    'library.books.all': self.library.books.all(),
   }
   return HttpResponse(template.render(context, request))
