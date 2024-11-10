@@ -14,7 +14,8 @@ def list_books(request):
   return HttpResponse(template.render(context, request))
  # return HttpResponse(context, request)
 
-class LibraryDetailView(Library):
+class LibraryDetailView(DetailView):
+ model = Library
  def get(self, request):
   self.library_id = request.Library.pk
   self.library = Library.objects.get(pk=self.library_id)
