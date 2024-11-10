@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
@@ -34,3 +35,13 @@ class LibraryDetailView(DetailView):
     form_class = UserCreationForm()
     success_url = reverse_lazy('login')
     template_name = 'relationship_app/register.html'
+
+def has_perm(self, perm, obj=None):
+    try:
+        user_perm = self.Book_permissions.get(codename=perm)
+    except ObjectDoesNotExist:
+        user_perm = False
+    if user_perm:
+        return True
+    else:
+        return False
