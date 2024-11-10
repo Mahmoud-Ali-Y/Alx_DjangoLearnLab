@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.template import loader
 from django.http import HttpResponse
 from .models import *
+from .models import Library
 # Create your views here.
 def books(request):
   books = Book.objects.all().values()
