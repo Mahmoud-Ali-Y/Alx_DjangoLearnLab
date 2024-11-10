@@ -58,10 +58,10 @@ def has_perm(self, perm, obj=None):
     def delete_book():
       book = Book.objects.get(id=1)
       book.delete
-    @has_role_decorator('Admin')
+    @UserProfile.role('Admin')
     def admin_view(request, id):
-    # user = UserProfile.objects.get(id=id)
-    # if user.role == 'Admin':
+     user = UserProfile.objects.get(id=id)
+     if user.role == 'Admin':
       template = loader.get_template('relationship_app/Admin.html')
       return HttpResponse(template.render())
     def librarian_view(request):
