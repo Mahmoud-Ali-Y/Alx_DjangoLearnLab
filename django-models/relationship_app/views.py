@@ -5,7 +5,7 @@ from .models import *
 # Create your views here.
 def books(request):
   books = Book.objects.all().values()
-  template = loader.get_template('list_books.html')
+  template = loader.get_template('relationship_app/list_books.html')
   context = {
     'books': books,
   }
