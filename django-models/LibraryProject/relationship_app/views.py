@@ -77,7 +77,7 @@ def has_perm(self, perm, obj=None):
       template = loader.get_template('relationship_app/Admin.html')
       return HttpResponse(template.render())
     #@check_role
-    @method_decorator(user_passes_test(check_role, admin_url='relationship_app/librarian_view.html'))
+    @user_passes_test(check_role, admin_url='relationship_app/librarian_view.html')
     def librarian_view(request):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Librarian':
