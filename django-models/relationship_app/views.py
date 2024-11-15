@@ -11,6 +11,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth import login
 from rolepermissions.decorators import has_role_decorator
+from django.contrib.auth.decorators import user_passes_test
 # Create your views here.
 def list_books(request):
   books = Book.objects.all().values()
@@ -58,17 +59,29 @@ def has_perm(self, perm, obj=None):
     def delete_book():
       book = Book.objects.get(id=1)
       book.delete
-    @User.UserProfile.role('Admin')
+    def check_role(function):
+      def wrap(request, id):
+        user_profile = UserProfile.objects.get(id = id)
+        match user_profile.role:
+          case 'Admin':
+            return admin_view(request, id)
+          case 'Librarian':
+            return librarian_view(request, id)
+          case 'Member':
+            return member_view(request, id)
+    @check_role
     def admin_view(request, id):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Admin':
       template = loader.get_template('relationship_app/Admin.html')
       return HttpResponse(template.render())
+    @check_role
     def librarian_view(request):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Librarian':
       template = loader.get_template('relationship_app/Librarian.html')
       return HttpResponse(template.render())
+    @check_role
     def member_view(request):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Member':
