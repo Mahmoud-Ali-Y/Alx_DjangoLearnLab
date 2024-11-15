@@ -70,14 +70,14 @@ def has_perm(self, perm, obj=None):
       case 'Member':
          return True
     #@check_role
-    @method_decorator(user_passes_test(check_role, admin_url='relationship_app/Admin.html'))
+    @method_decorator(user_passes_test(check_role, admin_url='relationship_app/admin_view.html'))
     def admin_view(request, id):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Admin':
       template = loader.get_template('relationship_app/Admin.html')
       return HttpResponse(template.render())
     #@check_role
-    @method_decorator(user_passes_test(check_role, admin_url='relationship_app/Librarian.html'))
+    @method_decorator(user_passes_test(check_role, admin_url='relationship_app/librarian_view.html'))
     def librarian_view(request):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Librarian':
@@ -88,5 +88,5 @@ def has_perm(self, perm, obj=None):
     def member_view(request):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Member':
-      template = loader.get_template('relationship_app/Member.html')
+      template = loader.get_template('relationship_app/member_view.html')
       return HttpResponse(template.render())
