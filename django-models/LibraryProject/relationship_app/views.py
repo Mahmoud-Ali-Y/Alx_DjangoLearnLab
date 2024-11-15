@@ -60,28 +60,31 @@ def has_perm(self, perm, obj=None):
       book = Book.objects.get(id=1)
       book.delete
     def check_role(function):
-      def wrap(request, id):
-        user_profile = UserProfile.objects.get(id = id)
-        match user_profile.role:
-          case 'Admin':
-            return admin_view(request, id)
-          case 'Librarian':
-            return librarian_view(request, id)
-          case 'Member':
-            return member_view(request, id)
-    @check_role
+     # def wrap(request, id):
+      #  user_profile = UserProfile.objects.get(id = id)
+     match user_profile.role:
+      case 'Admin':
+         return True
+      case 'Librarian':
+         return True
+      case 'Member':
+         return True
+    #@check_role
+    @method_decorator(user_passes_test(check_role, admin_url='relationship_app/Admin.html'))
     def admin_view(request, id):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Admin':
       template = loader.get_template('relationship_app/Admin.html')
       return HttpResponse(template.render())
-    @check_role
+    #@check_role
+    @method_decorator(user_passes_test(check_role, admin_url='relationship_app/Librarian.html'))
     def librarian_view(request):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Librarian':
       template = loader.get_template('relationship_app/Librarian.html')
       return HttpResponse(template.render())
-    @check_role
+    #@check_role
+    @method_decorator(user_passes_test(check_role, admin_url='relationship_app/Member.html'))
     def member_view(request):
      user = UserProfile.objects.get(id=id)
      if user.role == 'Member':
