@@ -1,0 +1,4 @@
+can_view enables users_group to view.
+can_edit enables users_group to edit.
+can_create enables users_group to create.
+can_delete enables users_group to delete.
