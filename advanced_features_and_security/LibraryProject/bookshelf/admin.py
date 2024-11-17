@@ -11,10 +11,10 @@ class CustomUserInline(admin.StackedInline):
     model = CustomUser
     can_delete = False
     verbose_name_plural = "CustomUser"
-class UserAdmin(BaseUserAdmin):
+class CustomUserAdmin(BaseUserAdmin):
     inlines = [CustomUserInline]
 
 # Register your models here.
 admin.site.register(Book)
-admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+# admin.site.unregister(User)
+admin.site.register(CustomUser, CustomUserAdmin)
