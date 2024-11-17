@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import permission_required
 from django.template import loader
 # Create your views here.
 @permission_required('app_name.can_edit', raise_exception=True)
-def list_books(request):
+def book_list(request):
   books = Book.objects.all().values()
   template = loader.get_template('relationship_app/list_books.html')
   context = {
