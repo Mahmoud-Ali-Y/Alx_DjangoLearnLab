@@ -3,7 +3,7 @@ from .models import *
 from django.contrib.auth.models import Permission
 from django.contrib.auth.decorators import permission_required
 from django.template import loader
-from django.forms import ExampleForm
+from .forms import ExampleForm
 # Create your views here.
 @permission_required('app_name.can_edit', raise_exception=True)
 def book_list(request):
