@@ -3,7 +3,7 @@ from rest_framework import generics
 from .serializers import BookSerializer # replace with your project's serializer
 from .models import Book
 from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated, IsAuthorOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 # Create your views here.
 class CustomBookCreateView(generics.CreateAPIView):
