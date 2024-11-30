@@ -3,6 +3,8 @@ from rest_framework.test import APIRequestFactory
 from .models import *
 from .views import *
 from rest_framework import status
+from django.contrib.auth.models import User
+from django.test import Client
 
 class APITestCase:
  def setUp(self):
@@ -22,3 +24,8 @@ class UrlTests(TestCase):
      request = factory.get('/api/books/')
      response = CustomBookListView(request)
      return response.data
+
+class login:
+    def user_login(self):
+        login = self.client.login(username='homer', password='simpson') 
+        self.assertTrue(login) 
