@@ -10,4 +10,8 @@ router.register(r'Book', CustomBookDetailView)
 
 urlpatterns = [
     path('api/', include(router.urls)),
+    path('api/books', admin.site.urls),
+    path('api/books/create'),
+    path('api/books/update'),
+    path('api/books/delete'),
 ]
