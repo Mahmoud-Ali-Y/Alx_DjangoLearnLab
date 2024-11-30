@@ -16,7 +16,19 @@ class CustomBookCreateView(generics.CreateAPIView):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
-class CustomBookListView(generics.ListAPIView):
+class CustomBookDetailView(generics.ListAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+class CustomBookUpdateView(generics.ListAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+class CustomBookDeleteView(generics.ListAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
     queryset = Book.objects.all()
