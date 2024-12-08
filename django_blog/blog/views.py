@@ -14,6 +14,7 @@ class UserCreationForm(SuccessMessageMixin, CreateView):
   success_url = reverse_lazy('login')
   form_class = UserRegisterForm
   success_message = "Your profile was created successfully"
+  user = User.objects.create()
 
 class MyLoginView(LoginView):
     redirect_authenticated_user = True
@@ -24,3 +25,7 @@ class MyLoginView(LoginView):
     def form_invalid(self, form):
         messages.error(self.request,'Invalid username or password')
         return self.render_to_response(self.get_context_data(form=form))
+    
+class POST:
+    def method():
+        post = Post.objects.create()
