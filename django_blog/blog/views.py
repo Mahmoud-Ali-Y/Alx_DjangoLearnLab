@@ -4,17 +4,16 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib.messages import messages
+from .forms import UserRegisterForm
+from django.views.generic.edit import CreateView
 
 # Create your views here.
-def signup(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-    else:
-        form = UserCreationForm()
-    return render(request, 'blog/register.html', {'form': form})
+
+class SignUpView(SuccessMessageMixin, CreateView):
+  template_name = 'users/register.html'
+  success_url = reverse_lazy('login')
+  form_class = UserRegisterForm
+  success_message = "Your profile was created successfully"
 
 class MyLoginView(LoginView):
     redirect_authenticated_user = True
