@@ -29,3 +29,4 @@ class MyLoginView(LoginView):
 class POST:
     def method():
         post = Post.objects.create()
+        post.save()
