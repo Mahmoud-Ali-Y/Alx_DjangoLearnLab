@@ -13,4 +13,5 @@ urlpatterns = [
     path('blog/login/', MyLoginView.as_view(),name='login'),
     path('blog/logout/', LogoutView.as_view(next_page='login'),name='logout'),
     path('blog/register/', UserCreationForm.as_view(next_page='login'),name='register'),
+    path('blog/profile/'),
 ]
