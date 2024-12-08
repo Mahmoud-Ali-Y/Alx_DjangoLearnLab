@@ -5,12 +5,12 @@ from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.contrib.messages import messages
 from .forms import UserRegisterForm
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, SuccessMessageMixin
 
 # Create your views here.
 
 class SignUpView(SuccessMessageMixin, CreateView):
-  template_name = 'users/register.html'
+  template_name = 'blog/register.html'
   success_url = reverse_lazy('login')
   form_class = UserRegisterForm
   success_message = "Your profile was created successfully"
