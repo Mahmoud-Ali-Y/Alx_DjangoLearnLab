@@ -9,7 +9,7 @@ from django.views.generic.edit import CreateView, SuccessMessageMixin
 
 # Create your views here.
 
-class SignUpView(SuccessMessageMixin, CreateView):
+class UserCreationForm(SuccessMessageMixin, CreateView):
   template_name = 'blog/register.html'
   success_url = reverse_lazy('login')
   form_class = UserRegisterForm
