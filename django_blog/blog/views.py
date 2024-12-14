@@ -86,4 +86,38 @@ class PostDeleteView(DeleteView, LoginRequiredMixin, UserPassesTestMixin):
     login_url = 'blog/login/'
     redirect_field_name = 'redirect_to'
     
+@permission_required('blog.can_add_Post', login_url="blog/login/")
+class CommentCreateView(CreateView, LoginRequiredMixin, UserPassesTestMixin):
+    model = Comment
+    fields = ['title', 'content']
+    template_name = 'new.html'
+    success_url = reverse_lazy('/post/')
+    login_url = 'blog/login/'
+    redirect_field_name = 'redirect_to'
 
+    def form_valid(self, form):
+        # Attach the currently logged-in user as the author before saving
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+@permission_required('blog.can_edit_Post', login_url="blog/login/")
+class CommentUpdateView(UpdateView, LoginRequiredMixin, UserPassesTestMixin):
+    model = Comment
+    fields = ['title', 'content']
+    template_name = 'update.html'
+    success_url = reverse_lazy('/post/<int:pk>/')
+    login_url = 'blog/login/'
+    redirect_field_name = 'redirect_to'
+
+    def form_valid(self, form):
+        # Attach the currently logged-in user as the author before saving
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+    
+@permission_required('blog.can_delete_Post', login_url="blog/login/")
+class CommentDeleteView(DeleteView, LoginRequiredMixin, UserPassesTestMixin):
+    model = Comment
+    template_name = 'delete.html'
+    success_url = reverse_lazy('/post/')
+    login_url = 'blog/login/'
+    redirect_field_name = 'redirect_to'
