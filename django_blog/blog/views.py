@@ -37,7 +37,7 @@ class POST:
 
 class PostListView(ListView):
     model = Post
-    template_name = 'posts.html'
+    template_name = 'post.html'
     
 class PostDetailView(DetailView):
     model = Post
@@ -48,7 +48,7 @@ class PostCreateView(CreateView, LoginRequiredMixin, UserPassesTestMixin):
     model = Post
     fields = ['title', 'content']
     template_name = 'new.html'
-    success_url = reverse_lazy('/posts/')
+    success_url = reverse_lazy('/post/')
     login_url = 'blog/login/'
     redirect_field_name = 'redirect_to'
 
@@ -62,7 +62,7 @@ class PostUpdateView(UpdateView, LoginRequiredMixin, UserPassesTestMixin):
     model = Post
     fields = ['title', 'content']
     template_name = 'update.html'
-    success_url = reverse_lazy('/posts/<int:pk>/')
+    success_url = reverse_lazy('/post/<int:pk>/')
     login_url = 'blog/login/'
     redirect_field_name = 'redirect_to'
 
@@ -75,7 +75,7 @@ class PostUpdateView(UpdateView, LoginRequiredMixin, UserPassesTestMixin):
 class PostDeleteView(DeleteView, LoginRequiredMixin, UserPassesTestMixin):
     model = Post
     template_name = 'delete.html'
-    success_url = reverse_lazy('/posts/')
+    success_url = reverse_lazy('/post/')
     login_url = 'blog/login/'
     redirect_field_name = 'redirect_to'
     

@@ -14,7 +14,7 @@ urlpatterns = [
     path('blog/logout/', LogoutView.as_view(next_page='login'),name='logout'),
     path('blog/register/', UserCreationForm.as_view(next_page='login'),name='register'),
     path('blog/profile/'),
-    path('/posts/', PostListView.as_view(), name='posts'),
+    path('/posts/', PostListView.as_view(), name='post'),
     path('/posts/<int:pk>/', PostDetailView.as_view(), name='details'),
     path('/post/new/', PostCreateView.as_view(), name='new'),
     path('/post/<int:pk>/update/', PostUpdateView.as_view(), name='edit'),
