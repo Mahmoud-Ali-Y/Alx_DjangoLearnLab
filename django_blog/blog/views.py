@@ -4,20 +4,20 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy
-from django.contrib.messages import messages
-from .forms import PostForm, UserRegisterForm
-from django.views.generic.edit import CreateView, SuccessMessageMixin, UpdateView, DeleteView
+from django.contrib.messages import Message
+from .forms import PostForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
-class UserCreationForm(SuccessMessageMixin, CreateView):
+class UserCreationForm(CreateView):
   template_name = 'blog/register.html'
   success_url = reverse_lazy('blog/login')
-  form_class = UserRegisterForm
   success_message = "Your profile was created successfully"
   user = User.objects.create()
 
@@ -28,8 +28,14 @@ class MyLoginView(LoginView):
         return reverse_lazy('tasks') 
     
     def form_invalid(self, form):
-        messages.error(self.request,'Invalid username or password')
+        Message.error(self.request,'Invalid username or password')
         return self.render_to_response(self.get_context_data(form=form))
+@login_required   
+class ProfileView(DetailView):
+    user = User.objects.all()
+    def profile_page(request, username):
+     user = get_object_or_404(User, username=username)
+     return render(request, 'howdidu/profile.html', {'profile_user': user})
     
 class POST:
     def method():
