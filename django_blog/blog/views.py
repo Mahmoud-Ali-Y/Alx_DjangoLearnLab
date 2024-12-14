@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView, SuccessMessageMixin, UpdateVie
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
