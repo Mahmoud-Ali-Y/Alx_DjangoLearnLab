@@ -14,4 +14,4 @@ class CommentForm(forms.ModelForm):
     # specify the name of model to use
     class Meta:
         model = Comment
-        fields = "__all__"
+        fields = "content"
