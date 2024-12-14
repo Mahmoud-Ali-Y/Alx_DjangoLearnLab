@@ -61,7 +61,7 @@ class PostCreateView(CreateView, LoginRequiredMixin, UserPassesTestMixin):
 class PostUpdateView(UpdateView, LoginRequiredMixin, UserPassesTestMixin):
     model = Post
     fields = ['title', 'content']
-    template_name = 'edit.html'
+    template_name = 'update.html'
     success_url = reverse_lazy('/posts/<int:pk>/')
     login_url = 'blog/login/'
     redirect_field_name = 'redirect_to'
