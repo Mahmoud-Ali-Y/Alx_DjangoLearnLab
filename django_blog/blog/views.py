@@ -12,9 +12,10 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
 
 # Create your views here.
-
+#"""
 class UserCreationForm(CreateView):
   template_name = 'blog/register.html'
   success_url = reverse_lazy('blog/login')
@@ -45,6 +46,11 @@ class POST:
 class PostListView(ListView):
     model = Post
     template_name = 'post.html'
+    search_fields = ['title', 'content', 'tags']
+    def get_queryset(self, request):
+     queryset = User.objects.filter(
+     Q(title=request.title) | Q(tags=request.tags)
+     )
     
 class PostDetailView(DetailView):
     model = Post
@@ -121,3 +127,8 @@ class CommentDeleteView(DeleteView, LoginRequiredMixin, UserPassesTestMixin):
     success_url = reverse_lazy('/post/')
     login_url = 'blog/login/'
     redirect_field_name = 'redirect_to'
+
+class TagListView(ListView):
+    model = Tag
+    template_name = 'tag.html'
+#"""

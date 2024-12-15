@@ -1,8 +1,6 @@
-# import form class from django
 from django import forms
- 
-# import GeeksModel from models.py
 from .models import Post, Comment
+from taggit.managers import TaggableManager
  
 # create a ModelForm
 class PostForm(forms.ModelForm):
@@ -10,6 +8,7 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = "__all__"
+        tags = TaggableManager()
 class CommentForm(forms.ModelForm):
     # specify the name of model to use
     class Meta:
