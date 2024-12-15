@@ -47,9 +47,11 @@ class PostListView(ListView):
     model = Post
     template_name = 'post.html'
     search_fields = ['title', 'content', 'tags']
+    def filterposts(self, request):
+        posts = Post.objects.filter(Post__tags=request.tags)
     def get_queryset(self, request):
      queryset = User.objects.filter(
-     Q(title=request.title) | Q(tags=request.tags)
+     Q(title__icontains=request.title) | Q(tags__name__icontains=request.tags) | Q(content__icontains=request.content)
      )
     
 class PostDetailView(DetailView):
