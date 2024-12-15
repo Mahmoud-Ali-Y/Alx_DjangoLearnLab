@@ -37,4 +37,19 @@ class FeedView():
      following_users = Post.following.all()
      posts = Post.objects.filter(author__in=following_users).order_by(Post.created_at)
 
+class LikeView():
+    permissions_class = ['permissions.IsAuthenticated']
+    def like_posts(self):
+     return Response
+    
+class UnLikeView():
+    permissions_class = ['permissions.IsAuthenticated']
+    def unlike_posts(self):
+     return Response
+
+class NotificationView():
+    permissions_class = ['permissions.IsAuthenticated']
+    def send_notification(self):
+     return Response
+
 #"""
