@@ -6,7 +6,12 @@ from .views import *
 from django.contrib.auth.views import LogoutView
 
 #"""
+router = DefaultRouter()
+router.register(r'Post', PostViewSet)
+router.register(r'Comment', CommentViewSet)
+
 urlpatterns = [
+    path('accounts/', include(router.urls)),
     path('blog/login/', UserLoginView.as_view(),name='login'),
     path('blog/logout/', LogoutView.as_view(next_page='login'),name='logout'),
     path('blog/register/', UserRegistration.as_view(next_page='login'),name='register'),
