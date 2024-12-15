@@ -39,7 +39,8 @@ class FeedView():
 
 class LikeView():
     permissions_class = ['permissions.IsAuthenticated']
-    def like_posts(self):
+    def like_posts(self, request, post):
+     like = Like.objects.get_or_create(user=request.user, post=post)
      return Response
     
 class UnLikeView():
@@ -49,7 +50,9 @@ class UnLikeView():
 
 class NotificationView():
     permissions_class = ['permissions.IsAuthenticated']
-    def send_notification(self):
+    def send_notification(self, pk):
+     target = generics.get_object_or_404(Post, pk=pk)
+     notification = Notification.objects.create()
      return Response
 
 #"""
