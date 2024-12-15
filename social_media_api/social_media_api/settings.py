@@ -131,3 +131,8 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
+REST_AUTH_SERIALIZERS = {
+    'LOGIN_SERIALIZER': 'path.to.custom.LoginSerializer',
+    'TOKEN_SERIALIZER': 'path.to.custom.TokenSerializer',
+}

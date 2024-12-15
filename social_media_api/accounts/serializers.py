@@ -1,9 +1,9 @@
-from models import *
+from accounts.models import CustomUser
 from rest_framework import serializers
 from rest_auth.registration.serializers import RegisterSerializer
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
-#"""
+"""
 class CustomRegisterSerializer(RegisterSerializer):
     bio = serializers.CharField()
     profile_picture = serializers.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
