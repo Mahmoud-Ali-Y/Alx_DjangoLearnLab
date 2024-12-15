@@ -130,7 +130,7 @@ class CommentDeleteView(DeleteView, LoginRequiredMixin, UserPassesTestMixin):
     login_url = 'blog/login/'
     redirect_field_name = 'redirect_to'
 
-class TagListView(ListView):
+class PostByTagListView(ListView):
     model = Tag
     template_name = 'tag.html'
 #"""
