@@ -7,7 +7,7 @@ class PostForm(forms.ModelForm):
     # specify the name of model to use
     class Meta:
         model = Post
-        fields = "__all__"
+        fields = ['title', 'content', 'published_date', 'author', 'tags']
         def TagWidget():
             widgets = forms.CharField()
 class CommentForm(forms.ModelForm):

@@ -36,7 +36,7 @@ class ProfileView(DetailView):
     user = User.objects.all()
     def profile_page(request, username):
      user = get_object_or_404(User, username=username)
-     return render(request, 'howdidu/profile.html', {'profile_user': user})
+     return render(request, 'blog/profile.html', {'profile_user': user})
     
 class POST:
     def method():
