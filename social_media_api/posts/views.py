@@ -30,4 +30,11 @@ class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'content']
+
+class FeedView():
+    permissions_class = ['permissions.IsAuthenticated']
+    def get_posts(self):
+     following_users = Post.following.all()
+     posts = Post.objects.filter(author__in=following_users).order_by(Post.created_at)
+
 #"""
