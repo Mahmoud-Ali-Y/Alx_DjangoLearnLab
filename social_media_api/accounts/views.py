@@ -39,17 +39,6 @@ class UserProfile(View):
      user = get_object_or_404(CustomUser, username=username)
      return render(request, 'accounts/profile.html', {'profile_user': user})
 
-class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['title', 'content']
 
-
-class CommentViewSet(viewsets.ModelViewSet):
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
-    filter_backends = [filters.SearchFilter]
-    search_fields = ['title', 'content']
 
 #"""
