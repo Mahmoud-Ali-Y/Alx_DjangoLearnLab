@@ -8,7 +8,8 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = "__all__"
-        tags = TaggableManager()
+        def TagWidget():
+            widgets = forms.CharField()
 class CommentForm(forms.ModelForm):
     # specify the name of model to use
     class Meta:
