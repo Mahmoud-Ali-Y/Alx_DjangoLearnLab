@@ -1,4 +1,4 @@
-"""
+#"""
 from django.shortcuts import render
 from rest_framework.response import Response
 #from knox.models import AuthToken
@@ -40,6 +40,11 @@ class UserProfile(View):
      user = get_object_or_404(CustomUser, username=username)
      return render(request, 'accounts/profile.html', {'profile_user': user})
 
-
+class FollowingView(generics.GenericAPIView):
+    permissions_class = ['permissions.IsAuthenticated']
+    def follow_user():
+        return Response
+    def unfollow_user():
+        return Response
 
 #"""
