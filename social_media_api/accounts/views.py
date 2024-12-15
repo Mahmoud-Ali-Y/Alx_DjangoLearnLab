@@ -44,6 +44,9 @@ class FollowingView(generics.GenericAPIView):
     permissions_class = ['permissions.IsAuthenticated']
     def follow_user():
         return Response
+        
+class UnFollowingView(generics.GenericAPIView):
+    permissions_class = ['permissions.IsAuthenticated']
     def unfollow_user():
         return Response
 
